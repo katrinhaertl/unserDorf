@@ -12,116 +12,158 @@ if ('posts' == get_option('show_on_front')) {
         ?>
 
         <?php if (get_theme_mod('show_main_content', 1)) : ?>
+
+
             <section class="wp-bp-main-content">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <?php
+                            $images = array(
+                                array(
+                                    'img_id' => 35,
+                                    'src' => '/wp-content/uploads/2020/04/haus2.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                                array(
+                                    'img_id' => 34,
+                                    'src' => '/wp-content/uploads/2020/04/haus1-1.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                                array(
+                                    'img_id' => 33,
+                                    'src' => '/wp-content/uploads/2020/04/haus3.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                                array(
+                                    'img_id' => 34,
+                                    'src' => '/wp-content/uploads/2020/04/haus1-1.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                                array(
+                                    'img_id' => 35,
+                                    'src' => '/wp-content/uploads/2020/04/haus3.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                                array(
+                                    'img_id' => 33,
+                                    'src' => '/wp-content/uploads/2020/04/haus2.png',
+                                    'url' => '/?page_id=10',
+                                ),
+                            );
+                            ?>
+
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel"
+                                 data-interval="false">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item py-5 active">
-                                        <div class="row">
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus2.png"
-                                                            alt="" class="wp-image-33"
-                                                            srcset="/wp-content/uploads/2020/04/haus2.png 450w, /wp-content/uploads/2020/04/haus2-300x300.png 300w, /wp-content/uploads/2020/04/haus2-150x150.png 150w, /wp-content/uploads/2020/04/haus2-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus2.png"
-                                                            alt="" class="wp-image-35"
-                                                            srcset="/wp-content/uploads/2020/04/haus1-1.png 450w, /wp-content/uploads/2020/04/haus1-1-300x300.png 300w, /wp-content/uploads/2020/04/haus1-1-150x150.png 150w, /wp-content/uploads/2020/04/haus1-1-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
+                                    <?php
+
+                                    $keyNext = '';
+                                    for($i=0; $i <= count($images); $i++):
+                                        $image = $images[$i];
+                                        if($image):
+
+
+                                            //$imageData = wp_get_attachment_image_src( $image['img_id'], 'full' );
+                                            //var_dump($imageData);
+
+//                                            $img_id = 35;
+//                                            $img_srcset = wp_get_attachment_image_srcset( $img_id );
+//                                            $img_sizes = wp_get_attachment_image_sizes( $img_id );
+//                                            echo '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+
+
+                                        ?>
+                                        <div class="carousel-item py-1 <?= ($i == 0) ? 'active' : '' ?>">
+                                            <div class="row">
+                                                <div class="col-sm-4 px-0 item-<?= $i ?> first">
+                                                    <a href="<?= $image['url'] ?>">
+                                                    <figure class="wp-block-image size-large">
+                                                        <?php
+                                                        $img_id = $image['img_id'];
+                                                        $img_srcset = wp_get_attachment_image_srcset( $img_id );
+                                                        $img_sizes = wp_get_attachment_image_sizes( $img_id );
+                                                        echo '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+                                                        ?>
+                                                    </figure>
+                                                    </a>
+                                                </div>
+
+                                            <?php if ( !wp_is_mobile() && $i%3 == 0 ) :
+                                                $i++;
+                                                $image = $images[$i];
+                                                if($images[$i]) :
+                                                 ?>
+                                                <!-- zwei elemente -->
+                                                <div class="col-sm-4 px-0 item-<?= $i ?> second">
+                                                    <a href="<?= $image['url'] ?>">
+                                                    <figure class="wp-block-image size-large">
+                                                        <?php
+                                                        $img_id = $image['img_id'];
+                                                        $img_srcset = wp_get_attachment_image_srcset( $img_id );
+                                                        $img_sizes = wp_get_attachment_image_sizes( $img_id );
+                                                        echo '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+                                                        ?>
+                                                    </figure>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+
+                                            <?php if ( !wp_is_mobile() && $i%3 == 1 ) :
+                                            $i++;
+                                            $image = $images[$i];
+                                            if($images[$i]) :
+                                                ?>
+                                                <!-- zwei elemente -->
+                                                <div class="col-sm-4 px-0 item-<?= $i ?> second">
+                                                    <a href="<?= $image['url'] ?>">
+                                                        <figure class="wp-block-image size-large">
+                                                            <?php
+                                                            $img_id = $image['img_id'];
+                                                            $img_srcset = wp_get_attachment_image_srcset( $img_id );
+                                                            $img_sizes = wp_get_attachment_image_sizes( $img_id );
+                                                            echo '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+                                                            ?>
+                                                        </figure>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+
+
+                                        <?php endif; ?>
+
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="carousel-item py-5">
-                                        <div class="row">
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus3.png"
-                                                            alt="" class="wp-image-35"
-                                                            srcset="/wp-content/uploads/2020/04/haus1-1.png 450w, /wp-content/uploads/2020/04/haus1-1-300x300.png 300w, /wp-content/uploads/2020/04/haus1-1-150x150.png 150w, /wp-content/uploads/2020/04/haus1-1-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus2.png"
-                                                            alt="" class="wp-image-33"
-                                                            srcset="/wp-content/uploads/2020/04/haus2.png 450w, /wp-content/uploads/2020/04/haus2-300x300.png 300w, /wp-content/uploads/2020/04/haus2-150x150.png 150w, /wp-content/uploads/2020/04/haus2-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item py-5">
-                                        <div class="row">
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large">
-                                                    <img src="/wp-content/uploads/2020/04/haus2.png"
-                                                         alt="" class="wp-image-33"
-                                                         srcset="/wp-content/uploads/2020/04/haus2.png 450w, /wp-content/uploads/2020/04/haus2-300x300.png 300w, /wp-content/uploads/2020/04/haus2-150x150.png 150w, /wp-content/uploads/2020/04/haus2-60x60.png 60w"
-                                                         sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus3.png"
-                                                            alt="" class="wp-image-35"
-                                                            srcset="/wp-content/uploads/2020/04/haus1-1.png 450w, /wp-content/uploads/2020/04/haus1-1-300x300.png 300w, /wp-content/uploads/2020/04/haus1-1-150x150.png 150w, /wp-content/uploads/2020/04/haus1-1-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item py-5">
-                                        <div class="row">
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus2.png"
-                                                            alt="" class="wp-image-33"
-                                                            srcset="/wp-content/uploads/2020/04/haus2.png 450w, /wp-content/uploads/2020/04/haus2-300x300.png 300w, /wp-content/uploads/2020/04/haus2-150x150.png 150w, /wp-content/uploads/2020/04/haus2-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                            <div class="col-sm-6 px-0">
-                                                <figure class="wp-block-image size-large"><img
-                                                            src="/wp-content/uploads/2020/04/haus1-1.png"
-                                                            alt="" class="wp-image-35"
-                                                            srcset="/wp-content/uploads/2020/04/haus1-1.png 450w, /wp-content/uploads/2020/04/haus1-1-300x300.png 300w, /wp-content/uploads/2020/04/haus1-1-150x150.png 150w, /wp-content/uploads/2020/04/haus1-1-60x60.png 60w"
-                                                            sizes="(max-width: 450px) 100vw, 450px">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#myCarousel" role="button"
-                                   data-slide="prev">
+                                    <?php endfor; ?>
+
+
+                                    <a class="carousel-control-prev" href="#myCarousel"
+                                       role="button"
+                                       data-slide="prev">
                                     <span class="carousel-control-prev-icon"
                                           aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#myCarousel" role="button"
-                                   data-slide="next">
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#myCarousel"
+                                       role="button"
+                                       data-slide="next">
                                     <span class="carousel-control-next-icon"
                                           aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+
+                                <?php while (have_posts()) : the_post(); ?>
+                                    <h2 class="text-center mb-4"><?php the_title(); ?></h2>
+                                    <?php wp_bootstrap_4_post_thumbnail(); ?>
+                                    <?php the_content(); ?>
+                                <?php endwhile; ?>
                             </div>
-
-
-                            <?php while (have_posts()) : the_post(); ?>
-                                <h2 class="text-center mb-4"><?php the_title(); ?></h2>
-                                <?php wp_bootstrap_4_post_thumbnail(); ?>
-                                <?php the_content(); ?>
-                            <?php endwhile; ?>
                         </div>
                     </div>
-                </div>
             </section>
         <?php endif; ?>
 
