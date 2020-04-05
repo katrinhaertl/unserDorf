@@ -1,3 +1,5 @@
 /.idea/*
 /_bootstrap-4.4.1/*
 /_templates/*
+/wp-includes/*
+/wp-admin/*
